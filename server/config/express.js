@@ -3,12 +3,13 @@
 
 var express = require('express');
 var config = require('./environment');
-var compression = require('compression');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+var compression = require('compression'); //Gzip
+var bodyParser = require('body-parser');  //Post body
+var methodOverride = require('method-override'); //바디파싱후 메서드 재정의
 var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
 var morgan = require('morgan');
+var favicon = require('serve-favicon');
 var path = require('path');
 
 module.exports = function (app) {
@@ -22,14 +23,19 @@ module.exports = function (app) {
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
+  app.use(morgan('dev'));
 
-  if ('production' === env) {
-    app.use(express.static(path.join(config.root, 'public')));
-    app.use(morgan('dev'));
-  } else {
-    app.use(express.static(path.join(config.root, 'client')));
-    app.use(morgan('dev'));
-    app.use(errorHandler()); // Error handler - has to be last
-  }
+  app.use(favicon(path.join(config.root, 'client', 'favicon.png')));
+  app.use(express.static(path.join(config.root, 'client')));
+  app.use(errorHandler()); // Error handler - has to be last
+
+  // if ('production' === env) {
+  //   app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
+  //   app.use(express.static(path.join(config.root, 'public')));
+  // } else {
+  //   app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
+  //   app.use(express.static(path.join(config.root, 'client')));
+  //   app.use(errorHandler()); // Error handler - has to be last
+  // }
   
 }

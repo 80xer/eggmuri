@@ -1,6 +1,15 @@
 {
   "name": "eggmuri",
-  "main": "server.js",
+  "version": "0.0.1",
+  "main": "server/server.js",
+  "description": "eggmuri npm package install",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/80xer/eggmuri.git"
+  },
+  "scripts": {
+    "start": "nodemon server/server.js"
+  },
   "dependencies": {
     "ejs": "^2.3.0",
     "express": "~4.12.4",
@@ -10,6 +19,7 @@
     "method-override": "^2.3.3",
     "cookie-parser": "^1.3.5",
     "errorhandler": "^1.3.2",
-    "morgan": "^1.5.3"
+    "morgan": "^1.5.3",
+    "serve-favicon": "~2.2.1"
   }
 }
