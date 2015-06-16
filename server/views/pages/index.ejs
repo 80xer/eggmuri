@@ -3,24 +3,55 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <% include ../partials/head %>
+  <% include ../partials/head %>
 </head>
 <body class="container">
 
-    <header>
-        <% include ../partials/header %>
-    </header>
+  <header>
+    <% include ../partials/header %>
+  </header>
 
-    <main>
-        <div class="jumbotron">
-            <h1>EggMuri</h1>
-            <p>에그머리~~</p>
+  <main>
+    <div class="jumbotron">
+      <div class="wrap">
+        <div class="touchSlider" id="touchSlider">
+          <ul>
+            <li><img src="https://m1.behance.net/rendition/modules/139968695/disp/c0b1a3fdb14124d7cdfb72e51062ad8f.JPG" alt=""></li>
+            <li><img src="https://m1.behance.net/rendition/modules/139968697/disp/6730f80274f6625a3f521a9202b91791.jpg" alt=""></li>
+            <li><img src="https://m1.behance.net/rendition/modules/139968693/disp/0ecaa5a21844782ea468c645e921dc5f.JPG" alt=""></li>
+          </ul>
         </div>
-    </main>
+        <div class="btn_area">
+          <button type="button" class="btn_prev" onfocus="this.blur();"><img src="/images/arrow_left.png" style="width:15px;"></button>
+          <button type="button" class="btn_next" onfocus="this.blur();"><img src="/images/arrow_right.png" style="width:15px;"></button>
+        </div>
+      </div>
+    </div>
+  </main>
 
-    <footer>
-        <% include ../partials/footer %>
-    </footer>
-    
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="/js/jquery.event.drag.min.js"></script>
+  <script src="/js/jquery.touchslider.js"></script>
+  <script>
+    $(document).ready(function() {
+        
+        $("#touchSlider").touchSlider({
+          speed: 300,
+          view: 2,
+          flexible : true,
+          btn_prev : $("#touchSlider").next().find(".btn_prev"),
+          btn_next : $("#touchSlider").next().find(".btn_next"),
+          counter : function (e) {
+            $("#count").html("current : " + e.current + ", total : " + e.total);
+          }
+        });
+        
+      });
+
+  </script>
 </body>
 </html>
